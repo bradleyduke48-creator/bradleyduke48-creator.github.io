@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bradley Duke | Data Science Portfolio</title>
+  <style>
+    :root {
+      --bg:        #0a0e17;
+      --surface:   #111827;
+      --surface2:  #1a2236;
+      --border:    #1e2d45;
+      --accent:    #00d4ff;
+      --accent2:   #7c3aed;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --tag-bg:    #0f2040;
+      --tag-text:  #38bdf8;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,14,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-logo {
+      font-weight: 700; font-size: 1.1rem; color: var(--accent);
+      letter-spacing: 0.5px;
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 80px 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,212,255,0.07) 0%, transparent 70%),
+                  radial-gradient(ellipse 60% 50% at 80% 80%, rgba(124,58,237,0.06) 0%, transparent 60%);
+    }
+    .hero-inner { position: relative; max-width: 800px; }
+    .hero-tag {
+      display: inline-block;
+      background: var(--tag-bg); color: var(--tag-text);
+      border: 1px solid rgba(56,189,248,0.2);
+      border-radius: 100px; padding: 0.3rem 1rem;
+      font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800; line-height: 1.1;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+    .hero-sub {
+      font-size: 1.2rem; color: var(--muted); max-width: 620px; margin: 0 auto 2rem;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.75rem; border-radius: 8px;
+      font-size: 0.95rem; font-weight: 600; text-decoration: none;
+      transition: all 0.2s; cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: var(--accent); color: #000;
+    }
+    .btn-primary:hover { background: #33ddff; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      justify-content: center; margin-top: 2.5rem;
+    }
+    .badge {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 0.35rem 0.8rem;
+      font-size: 0.78rem; color: var(--muted);
+    }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700;
+      margin-bottom: 3rem;
+    }
+    .divider {
+      width: 40px; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px; margin: 0.8rem 0 2.5rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--surface); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      align-items: start;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; }
+    .stat-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .stat-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem;
+    }
+    .stat-num {
+      font-size: 2rem; font-weight: 800; color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem;
+    }
+    .skill-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .skill-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+    .skill-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .skill-card p { font-size: 0.85rem; color: var(--muted); }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+    .tag {
+      background: var(--tag-bg); color: var(--tag-text);
+      border: 1px solid rgba(56,189,248,0.15);
+      border-radius: 4px; padding: 0.15rem 0.55rem;
+      font-size: 0.72rem;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--surface); }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .project-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+    .project-icon { font-size: 2rem; }
+    .project-year {
+      font-size: 0.75rem; color: var(--muted);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; padding: 0.2rem 0.6rem;
+    }
+    .project-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .project-card p { font-size: 0.85rem; color: var(--muted); flex: 1; }
+    .project-highlights {
+      margin: 0.75rem 0 0; padding-left: 1rem;
+      list-style: none;
+    }
+    .project-highlights li {
+      font-size: 0.82rem; color: var(--muted); position: relative;
+      padding-left: 1rem; margin-bottom: 0.3rem;
+    }
+    .project-highlights li::before {
+      content: '▸'; color: var(--accent);
+      position: absolute; left: 0;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2rem;
+      position: relative; overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .exp-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+    }
+    .exp-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;
+    }
+    .exp-title { font-size: 1.1rem; font-weight: 700; }
+    .exp-org { color: var(--accent); font-size: 0.9rem; }
+    .exp-date {
+      font-size: 0.8rem; color: var(--muted);
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 4px; padding: 0.25rem 0.7rem; white-space: nowrap;
+    }
+    .exp-bullets { padding-left: 1rem; margin-top: 0.75rem; }
+    .exp-bullets li { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.4rem; list-style: none; position: relative; padding-left: 1rem; }
+    .exp-bullets li::before { content: '▸'; color: var(--accent); position: absolute; left: 0; }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--surface); }
+    .edu-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;
+    }
+    .edu-main h3 { font-size: 1.05rem; font-weight: 700; }
+    .edu-main .edu-inst { color: var(--accent); font-size: 0.9rem; margin: 0.25rem 0; }
+    .edu-main p { font-size: 0.85rem; color: var(--muted); }
+    .edu-year {
+      font-size: 0.8rem; color: var(--muted);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; padding: 0.25rem 0.7rem; white-space: nowrap;
+      align-self: flex-start;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      text-align: center;
+      background: var(--surface2);
+    }
+    .contact-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 3rem 2rem; max-width: 600px; margin: 0 auto;
+    }
+    .contact-email {
+      display: inline-block;
+      font-size: 1.1rem; color: var(--accent);
+      text-decoration: none; margin: 1.5rem 0;
+      padding: 0.75rem 2rem;
+      border: 1px solid rgba(0,212,255,0.3);
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .contact-email:hover { background: rgba(0,212,255,0.08); }
+    .contact-detail { font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem; color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { gap: 1rem; }
+      .exp-header { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">BD</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">&#128202; Data Science &amp; Quantitative Analysis</span>
+    <h1>Bradley Duke</h1>
+    <p class="hero-sub">
+      Final-year BSc Mathematics &amp; Sports Science student at Nottingham Trent University,
+      building machine learning models, statistical analyses, and data-driven insights.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge">Python</span>
+      <span class="badge">R / RStudio</span>
+      <span class="badge">Machine Learning</span>
+      <span class="badge">Statistical Modelling</span>
+      <span class="badge">Time Series</span>
+      <span class="badge">MATLAB</span>
+      <span class="badge">SQL</span>
+      <span class="badge">LaTeX</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">Turning data into decisions</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a final-year BSc Mathematics and Sports Science student at Nottingham Trent University,
+          predicted a High 2:1, with strong technical skills across statistical modelling, machine
+          learning, data analysis, and quantitative research.
+        </p>
+        <p>
+          I have hands-on experience applying advanced statistical methods to real-world and
+          commercially sensitive datasets — including work with an industry partner (Jigsaw24) and
+          a live-validated neural network dissertation project that placed real bets against Premier
+          League matches.
+        </p>
+        <p>
+          I'm seeking a graduate role in data science, statistics, or quantitative analysis where
+          strong mathematical foundations and technical skills can drive evidence-based decision-making.
+        </p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">0.98</div>
+          <div class="stat-label">Best-run AUC — football prediction neural network</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">52</div>
+          <div class="stat-label">Engineered features across 3 seasons of match data</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">150+</div>
+          <div class="stat-label">Survey responses collected in commercial project</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">15%</div>
+          <div class="stat-label">Cost reduction identified during finance internship</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Technical Toolkit</p>
+    <h2 class="section-title">Skills &amp; Technologies</h2>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-icon">&#127811;</div>
+        <h3>Python</h3>
+        <p>Data analysis, machine learning, and neural network implementation.</p>
+        <div class="tag-list">
+          <span class="tag">NumPy</span><span class="tag">Pandas</span>
+          <span class="tag">Scikit-learn</span><span class="tag">Matplotlib</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">&#128202;</div>
+        <h3>R / RStudio</h3>
+        <p>Regression, ANOVA, GLM, hypothesis testing, time series, and experimental design.</p>
+        <div class="tag-list">
+          <span class="tag">Regression</span><span class="tag">GLM</span>
+          <span class="tag">ANOVA</span><span class="tag">Time Series</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">&#129504;</div>
+        <h3>Machine Learning</h3>
+        <p>Neural network development using Statistica (MLP), including AUC optimisation and multi-run experimentation.</p>
+        <div class="tag-list">
+          <span class="tag">MLP</span><span class="tag">Classification</span>
+          <span class="tag">AUC</span><span class="tag">Backpropagation</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">&#128200;</div>
+        <h3>Statistical Modelling</h3>
+        <p>ARIMA, LASSO, Ridge, PCR, PLS regression, survival analysis, and clinical trial design.</p>
+        <div class="tag-list">
+          <span class="tag">ARIMA</span><span class="tag">LASSO</span>
+          <span class="tag">Survival Analysis</span><span class="tag">Kaplan-Meier</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">&#128290;</div>
+        <h3>MATLAB &amp; Minitab</h3>
+        <p>Numerical analysis, signal processing, control charts, and Six Sigma methods.</p>
+        <div class="tag-list">
+          <span class="tag">MATLAB</span><span class="tag">Minitab</span>
+          <span class="tag">Six Sigma</span><span class="tag">Control Charts</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">&#128209;</div>
+        <h3>Excel &amp; SQL</h3>
+        <p>Financial modelling, pivot tables, VLOOKUP, data visualisation, and relational database querying.</p>
+        <div class="tag-list">
+          <span class="tag">Excel</span><span class="tag">SQL</span>
+          <span class="tag">Pivot Tables</span><span class="tag">Financial Modelling</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Key Projects</p>
+    <h2 class="section-title">What I've built</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">&#9917;</span>
+          <span class="project-year">2025 – 2026</span>
+        </div>
+        <h3>Neural Network Football Prediction</h3>
+        <p>Dissertation: Built an MLP classifier to predict Premier League match outcomes using three seasons of data.</p>
+        <ul class="project-highlights">
+          <li>52 engineered input features across attack, defence, and form</li>
+          <li>Mean AUC of 0.9844 across 50 runs — best of 6 experimental configs</li>
+          <li>Derived backpropagation and perceptron convergence from first principles</li>
+          <li>Live-validated by placing real bets across two matchweeks</li>
+          <li>Identified a novel data quality issue in the primary dataset</li>
+        </ul>
+        <div class="tag-list" style="margin-top:1rem">
+          <span class="tag">Python</span><span class="tag">Statistica</span>
+          <span class="tag">MLP</span><span class="tag">AUC 0.9844</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">&#128200;</span>
+          <span class="project-year">2024 – 2026</span>
+        </div>
+        <h3>Statistical Consultancy Projects</h3>
+        <p>Two applied projects — one with industry partner Jigsaw24, one on energy consumption modelling.</p>
+        <ul class="project-highlights">
+          <li>Regression modelling on commercially sensitive Jigsaw24 data</li>
+          <li>Energy model: LASSO, Ridge, PCR, and PLS regression compared by MSE</li>
+          <li>Technical findings translated into plain-language client recommendations</li>
+          <li>Professional reports under constrained page limits</li>
+        </ul>
+        <div class="tag-list" style="margin-top:1rem">
+          <span class="tag">R</span><span class="tag">RStudio</span>
+          <span class="tag">LASSO</span><span class="tag">Ridge</span><span class="tag">PCR</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">&#128185;</span>
+          <span class="project-year">2025 – 2026</span>
+        </div>
+        <h3>Time Series &amp; Financial Modelling</h3>
+        <p>Collected and analysed real FTSE-listed company stock data across three time scales using ARIMA.</p>
+        <ul class="project-highlights">
+          <li>30-second, daily, and monthly data granularities</li>
+          <li>Structured ACF/PACF-based ARIMA model selection rules</li>
+          <li>Cross-correlated time series with external financial variables</li>
+          <li>Formal technical report produced</li>
+        </ul>
+        <div class="tag-list" style="margin-top:1rem">
+          <span class="tag">R</span><span class="tag">Minitab</span>
+          <span class="tag">ARIMA</span><span class="tag">ACF/PACF</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">&#127973;</span>
+          <span class="project-year">2025</span>
+        </div>
+        <h3>Medical Statistics &amp; Clinical Trial Analysis</h3>
+        <p>Planned and evaluated a clinical trial for a family of experimental drugs.</p>
+        <ul class="project-highlights">
+          <li>Survival analysis: Kaplan-Meier plots and Log-Rank test</li>
+          <li>Clinical trial design, randomisation, and ethics frameworks</li>
+          <li>Independent research essay on specialist medical statistics topic</li>
+        </ul>
+        <div class="tag-list" style="margin-top:1rem">
+          <span class="tag">Minitab</span><span class="tag">Kaplan-Meier</span>
+          <span class="tag">Log-Rank</span><span class="tag">Survival Analysis</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">&#128101;</span>
+          <span class="project-year">2024</span>
+        </div>
+        <h3>Commercial Awareness &amp; Business Analysis</h3>
+        <p>Data Analyst role in a group business simulation using multivariate analysis on public databases.</p>
+        <ul class="project-highlights">
+          <li>Designed and executed a 150+ response consumer survey</li>
+          <li>Hypothesis testing and error bounds identified 3 behaviour trends</li>
+          <li>Presented via structured reports, Excel visualisations, and A1 poster</li>
+        </ul>
+        <div class="tag-list" style="margin-top:1rem">
+          <span class="tag">RStudio</span><span class="tag">Excel</span>
+          <span class="tag">Multivariate Analysis</span><span class="tag">Hypothesis Testing</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-icon">&#9881;</span>
+          <span class="project-year">2024 – 2026</span>
+        </div>
+        <h3>Design of Experiments</h3>
+        <p>Applied ANOVA, factorial design, GLM, and logistic regression to experimental datasets.</p>
+        <ul class="project-highlights">
+          <li>Full diagnostic checking and model assumption validation</li>
+          <li>Factorial design analysis across multiple factor levels</li>
+          <li>Logistic regression with interpretation for non-specialist audiences</li>
+        </ul>
+        <div class="tag-list" style="margin-top:1rem">
+          <span class="tag">R</span><span class="tag">ANOVA</span>
+          <span class="tag">GLM</span><span class="tag">Logistic Regression</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Work Experience</p>
+    <h2 class="section-title">Professional background</h2>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title">Finance Intern</div>
+          <div class="exp-org">USP College Finance Office</div>
+        </div>
+        <span class="exp-date">June – August 2023</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Prepared budget variance analyses, cash flow forecasts, and management reporting packs to support strategic decision-making.</li>
+        <li>Processed and reconciled 200+ AP/AR transactions weekly, maintaining full compliance with internal controls, audit standards, and regulatory requirements.</li>
+        <li>Streamlined month-end close activities — including journal entries, balance sheet reconciliations, and accruals — contributing to a 2-day reduction in reporting turnaround time.</li>
+        <li>Identified cost-saving opportunities through departmental spending analysis, achieving a 15% reduction in operational costs across four key areas.</li>
+        <li>Utilised Excel (pivot tables, VLOOKUP, financial modelling) to analyse general ledger data, identify discrepancies, and recommend process improvements.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <p class="section-label">Education</p>
+    <h2 class="section-title">Academic background</h2>
+
+    <div class="edu-card">
+      <div class="edu-main">
+        <h3>BSc Mathematics and Sports Science &nbsp; <span style="color:var(--accent);font-weight:400;font-size:0.9rem">High 2:1 Predicted</span></h3>
+        <div class="edu-inst">Nottingham Trent University</div>
+        <p style="margin-top:0.5rem">
+          Dissertation: <em>Beating the Bookies: A Neural Network Approach to Football Prediction</em>
+        </p>
+        <p style="margin-top:0.4rem">
+          Relevant modules: Mathematical Enterprise (93%), Differential Equations and Modelling (75%),
+          Applied Statistics, Statistical Modelling, Medical Statistics, Project and Professional Skills
+        </p>
+      </div>
+      <span class="edu-year">2023 – 2026</span>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-main">
+        <h3>A Levels</h3>
+        <div class="edu-inst">The Campion School Sixth Form</div>
+        <p>Mathematics (B) &nbsp;·&nbsp; Biology (B) &nbsp;·&nbsp; Physical Education (B)</p>
+      </div>
+      <span class="edu-year">2021 – 2023</span>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-main">
+        <h3>GCSEs</h3>
+        <div class="edu-inst">The Campion School</div>
+        <p>11 GCSEs grades 6–8, including Grade 8 in Mathematics</p>
+      </div>
+      <span class="edu-year">2016 – 2021</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="section-title" style="text-align:center">Open to opportunities</h2>
+    <div class="contact-card">
+      <p style="color:var(--muted);font-size:0.95rem">
+        I'm actively looking for graduate roles in data science, statistics, or quantitative analysis.
+        If you think I'd be a good fit, I'd love to hear from you.
+      </p>
+      <a class="contact-email" href="mailto:bradleyduke48@gmail.com">
+        &#9993;&nbsp; bradleyduke48@gmail.com
+      </a>
+      <p class="contact-detail">&#128222;&nbsp; +44 (0) 7452 952 260</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Bradley Duke &nbsp;·&nbsp; Built with HTML &amp; CSS</p>
+</footer>
+
+<!-- Scroll fade-in animation -->
+<script>
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    }),
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll(
+    '.skill-card, .project-card, .exp-card, .edu-card, .stat-card'
+  ).forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
