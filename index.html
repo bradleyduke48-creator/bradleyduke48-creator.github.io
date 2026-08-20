@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bradley Duke | Data Science Portfolio</title>
+  <title>Bradley Duke | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -294,25 +294,50 @@
 
     /* ── CONTACT ── */
     #contact { background: var(--surface); text-align: center; }
-    .contact-inner { max-width: 580px; margin: 0 auto; }
+    .contact-inner { max-width: 620px; margin: 0 auto; }
     .contact-card {
       background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 20px; padding: 3rem 2rem;
-      box-shadow: var(--shadow-lg); margin-top: 1.5rem;
+      border-radius: 20px; padding: 2.5rem 2.5rem;
+      box-shadow: var(--shadow-lg); margin-top: 1.5rem; text-align: left;
     }
-    .contact-card p { color: var(--muted); font-size: 0.975rem; line-height: 1.65; }
-    .contact-email {
-      display: inline-block;
-      font-size: 1.05rem; color: var(--accent); font-weight: 600;
-      text-decoration: none; margin: 1.6rem 0 1rem;
-      padding: 0.8rem 2.2rem;
-      background: var(--accent-lt);
-      border: 1px solid #f0d0b0;
-      border-radius: 10px;
-      transition: all 0.2s;
+    .contact-card > p { color: var(--muted); font-size: 0.975rem; line-height: 1.65; margin-bottom: 1.75rem; text-align: center; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
+    .form-group label { font-size: 0.8rem; font-weight: 600; color: var(--text); letter-spacing: 0.3px; }
+    .form-group input,
+    .form-group textarea {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 9px; padding: 0.75rem 1rem;
+      font-size: 0.9rem; font-family: 'Inter', sans-serif;
+      color: var(--text); outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
     }
-    .contact-email:hover { background: #f0e0cc; transform: translateY(-1px); }
-    .contact-detail { font-size: 0.9rem; color: var(--muted-lt); }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(181,98,28,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-submit {
+      width: 100%; padding: 0.875rem;
+      background: var(--accent); color: #fff;
+      border: none; border-radius: 9px;
+      font-size: 0.95rem; font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 4px 14px rgba(181,98,28,0.3);
+      margin-top: 0.5rem;
+    }
+    .form-submit:hover { background: #c96f22; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(181,98,28,0.38); }
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .form-status {
+      text-align: center; padding: 0.85rem; border-radius: 9px;
+      font-size: 0.875rem; font-weight: 500; margin-top: 1rem; display: none;
+    }
+    .form-status.success { background: #f0faf0; border: 1px solid #a8d8a8; color: #2d6a2d; display: block; }
+    .form-status.error   { background: #fdf3f0; border: 1px solid #e8b0a0; color: #8b3020; display: block; }
+    @media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
 
     /* ── FOOTER ── */
     footer {
@@ -353,26 +378,26 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
-    <span class="hero-eyebrow">&#127891; Graduate &nbsp;·&nbsp; Data Science &amp; Quantitative Analysis</span>
+    <span class="hero-eyebrow">&#127891; Mathematics &nbsp;&amp;&nbsp; Sports Science &nbsp;&middot;&nbsp; Nottingham Trent University</span>
     <h1>Bradley Duke</h1>
     <p class="hero-sub">
-      I turn complex data into clear, confident decisions. Final-year Mathematics &amp; Sports Science
-      student at NTU &mdash; with real industry experience, a live-tested neural network dissertation,
-      and a passion for finding meaning in numbers.
+      Final-year student with a track record of turning complex problems into clear answers &mdash;
+      whether that&rsquo;s building neural networks, advising on business strategy, coaching young athletes,
+      or leading a team on the pitch.
     </p>
     <div class="hero-cta">
       <a href="#projects" class="btn btn-primary">See my work</a>
       <a href="#contact" class="btn btn-outline">Get in touch</a>
     </div>
     <div class="hero-badges">
-      <span class="badge">Python</span>
-      <span class="badge">R / RStudio</span>
-      <span class="badge">Machine Learning</span>
-      <span class="badge">Statistical Modelling</span>
-      <span class="badge">Time Series</span>
-      <span class="badge">MATLAB</span>
-      <span class="badge">SQL</span>
-      <span class="badge">LaTeX</span>
+      <span class="badge">Analysis &amp; Modelling</span>
+      <span class="badge">Python &amp; R</span>
+      <span class="badge">Financial Reporting</span>
+      <span class="badge">Research &amp; Writing</span>
+      <span class="badge">Leadership</span>
+      <span class="badge">Sports &amp; Performance</span>
+      <span class="badge">Communication</span>
+      <span class="badge">Problem Solving</span>
     </div>
   </div>
 </section>
@@ -381,23 +406,23 @@
 <section id="about">
   <div class="container">
     <p class="section-label">About Me</p>
-    <h2 class="section-title">Turning data into decisions</h2>
+    <h2 class="section-title">A bit about me</h2>
     <div class="section-rule"></div>
     <div class="about-grid">
       <div class="about-text">
         <p>
           I'm a final-year BSc Mathematics and Sports Science student at Nottingham Trent University,
-          predicted a High 2:1. I genuinely enjoy the process of working through a messy dataset
-          and coming out the other side with something meaningful.
+          predicted a High 2:1. I like solving problems &mdash; whether that's untangling a dataset,
+          figuring out what a client actually needs, or working out how to win a football match.
         </p>
         <p>
-          I've had the chance to apply that in a real way &mdash; analysing commercially sensitive data
-          for industry partner Jigsaw24, and spending the last year building a neural network that
-          predicted Premier League results well enough to bet on live.
+          I've worked in a real finance office, analysed commercially sensitive data for an industry
+          partner, built and live-tested a machine learning model, coached young athletes, and captained
+          a football team. I'm the kind of person who gets stuck in.
         </p>
         <p>
-          I'm looking for a graduate role in data science, statistics, or quantitative analysis where
-          I can keep growing and help a team make better, evidence-based decisions.
+          I bring strong analytical skills, the ability to communicate clearly to any audience, and
+          a genuine curiosity about how things work &mdash; which tends to make me useful in most rooms.
         </p>
       </div>
       <div class="stat-grid">
@@ -737,18 +762,33 @@
   <div class="container">
     <div class="contact-inner">
       <p class="section-label" style="text-align:center">Get in Touch</p>
-      <h2 class="section-title" style="text-align:center">Open to opportunities</h2>
+      <h2 class="section-title" style="text-align:center">Let&rsquo;s talk</h2>
       <div class="section-rule" style="margin:0.75rem auto 0"></div>
       <div class="contact-card">
-        <p>
-          I&rsquo;m actively looking for graduate roles in data science, statistics, or quantitative
-          analysis. If you think I&rsquo;d be a good fit &mdash; or just want to chat about data
-          &mdash; I&rsquo;d love to hear from you.
-        </p>
-        <a class="contact-email" href="mailto:bradleyduke48@gmail.com">
-          &#9993;&nbsp; bradleyduke48@gmail.com
-        </a>
-        <p class="contact-detail">&#128222;&nbsp; +44 (0) 7452 952 260</p>
+        <p>Whether it&rsquo;s a job opportunity, a collaboration, or just a question &mdash; drop me a message and I&rsquo;ll get back to you.</p>
+        <form id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-name">Your name</label>
+              <input type="text" id="cf-name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Your email</label>
+              <input type="email" id="cf-email" name="email" placeholder="jane@example.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cf-subject">Subject</label>
+            <input type="text" id="cf-subject" name="subject" placeholder="What&rsquo;s it about?" />
+          </div>
+          <div class="form-group">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" placeholder="Tell me a bit about what you have in mind&hellip;" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send message &rarr;</button>
+          <div class="form-status success" id="form-success">Message sent &mdash; I&rsquo;ll be in touch soon!</div>
+          <div class="form-status error"   id="form-error">Something went wrong. Please try again or email me directly.</div>
+        </form>
       </div>
     </div>
   </div>
@@ -759,8 +799,9 @@
   <p>&copy; 2026 Bradley Duke &nbsp;&middot;&nbsp; Mathematics &amp; Sports Science, Nottingham Trent University</p>
 </footer>
 
-<!-- Scroll fade-in -->
+<!-- Scroll fade-in + contact form -->
 <script>
+  // Fade-in on scroll
   const observer = new IntersectionObserver(
     entries => entries.forEach(e => {
       if (e.isIntersecting) {
@@ -777,6 +818,40 @@
     el.style.transform = 'translateY(22px)';
     el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
     observer.observe(el);
+  });
+
+  // Contact form — powered by Formspree
+  // To activate: sign up free at https://formspree.io, create a form,
+  // and replace YOUR_FORM_ID below with your form's ID (e.g. "xyzabcde")
+  const FORMSPREE_ID = 'YOUR_FORM_ID';
+
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn     = this.querySelector('.form-submit');
+    const success = document.getElementById('form-success');
+    const error   = document.getElementById('form-error');
+    success.style.display = error.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(this)
+      });
+      if (res.ok) {
+        success.style.display = 'block';
+        this.reset();
+      } else {
+        error.style.display = 'block';
+      }
+    } catch (_) {
+      error.style.display = 'block';
+    }
+
+    btn.disabled = false;
+    btn.textContent = 'Send message →';
   });
 </script>
 
